@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CD Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        #getCatalogBtn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        #getCatalogBtn:hover {
+            background-color: #0056b3;
+        }
+
+        #catalogContainer {
+            width: 90%;
+            max-width: 900px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CD Catalog</h1>
+    <button id="getCatalogBtn">Load CD Catalog</button>
+
+    <div id="catalogContainer"></div>
+
+    <script>
+        // Sample CD data
+        const cds = [
+            { id: 1, title: "Thriller", artist: "Michael Jackson", year: 1982, genre: "Pop" },
+            { id: 2, title: "Back in Black", artist: "AC/DC", year: 1980, genre: "Rock" },
+            { id: 3, title: "The Dark Side of the Moon", artist: "Pink Floyd", year: 1973, genre: "Progressive Rock" },
+            { id: 4, title: "21", artist: "Adele", year: 2011, genre: "Pop" }
+        ];
+
+        const button = document.getElementById('getCatalogBtn');
+        const container = document.getElementById('catalogContainer');
+
+        button.addEventListener('click', () => {
+            let html = '<table>';
+            html += '<tr><th>ID</th><th>Title</th><th>Artist</th><th>Year</th><th>Genre</th></tr>';
+
+            cds.forEach(cd => {
+                html += `<tr>
+                    <td>${cd.id}</td>
+                    <td>${cd.title}</td>
+                    <td>${cd.artist}</td>
+                    <td>${cd.year}</td>
+                    <td>${cd.genre}</td>
+                </tr>`;
+            });
+
+            html += '</table>';
+            container.innerHTML = html;
+        });
+    </script>
+
+</body>
+</html>
