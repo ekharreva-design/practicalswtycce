@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Student Data using DOM</title>
+</head>
+<body>
+    <h2>Student Information</h2>
+    <div id="output"></div>
+
+    <script>
+        const xmlData = `
+        <students>
+            <student>
+                <id>1</id>
+                <name>reva ekhar</name>
+                <course>Computer Science</course>
+                <email>ycce@university.com</email>
+            </student>
+            <student>
+                <id>2</id>
+                <name>riya ekhar</name>
+                <course>Information Technology</course>
+                <email>blvn@university.com</email>
+            </student>
+        </students>`;
+
+       
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlData, "application/xml");
+
+       
+        const student = xmlDoc.getElementsByTagName("student")[1];
+        const name = student.getElementsByTagName("name")[0].textContent;
+        const course = student.getElementsByTagName("course")[0].textContent;
+        const email = student.getElementsByTagName("email")[0].textContent;
+
+    
+        document.getElementById("output").innerHTML =
+            `<strong>Second Student Details:</strong><br>
+            Name: ${name}<br>
+            Course: ${course}<br>
+            Email: ${email}`;
+    </script>
+</body>
+</html>

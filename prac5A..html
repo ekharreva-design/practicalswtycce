@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Information using XML with DTD</title>
+</head>
+<body>
+  <h1>Employee Information</h1>
+  <div id="employeeData"></div>
+
+  <script>
+   
+    const xmlData = `<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE employeeInfo [
+      <!ELEMENT employeeInfo (employee+)>
+      <!ELEMENT employee (empID, name, department, designation, email, salary)>
+      <!ELEMENT empID (#PCDATA)>
+      <!ELEMENT name (#PCDATA)>
+      <!ELEMENT department (#PCDATA)>
+      <!ELEMENT designation (#PCDATA)>
+      <!ELEMENT email (#PCDATA)>
+      <!ELEMENT salary (#PCDATA)>
+    ]>
+    <employeeInfo>
+        <employee>
+            <empID>101</empID>
+            <name>REVA EKHAR</name>
+            <department>CT</department>
+            <designation>Developer</designation>
+            <email>revaekhar@company.com</email>
+            <salary>60000</salary>
+        </employee>
+        <employee>
+            <empID>102</empID>
+            <name>RIYA EKHAR</name>
+            <department>HR</department>
+            <designation>Manager</designation>
+            <email>riyaekhar@company.com</email>
+            <salary>75000</salary>
+        </employee>
+    </employeeInfo>`;
+
+    
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlData, "text/xml");
+
+   
+    const employees = xmlDoc.getElementsByTagName("employee");
+    let output = "<ul>";
+
+    for (let i = 0; i < employees.length; i++) {
+      const id = employees[i].getElementsByTagName("empID")[0].textContent;
+      const name = employees[i].getElementsByTagName("name")[0].textContent;
+      const dept = employees[i].getElementsByTagName("department")[0].textContent;
+      const desig = employees[i].getElementsByTagName("designation")[0].textContent;
+      const email = employees[i].getElementsByTagName("email")[0].textContent;
+      const salary = employees[i].getElementsByTagName("salary")[0].textContent;
+
+      output += `<li><strong>ID:</strong> ${id} | <strong>Name:</strong> ${name} | 
+                 <strong>Department:</strong> ${dept} | <strong>Designation:</strong> ${desig} | 
+                 <strong>Email:</strong> ${email} | <strong>Salary:</strong> ₹${salary}</li>`;
+    }
+    output += "</ul>";
+
+    document.getElementById("employeeData").innerHTML = output;
+  </script>
+</body>
+</html>
