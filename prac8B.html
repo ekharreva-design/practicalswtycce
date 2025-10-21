@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conditional Statements and Functions</title>
+</head>
+<body>
+  <h2>Check Number Type</h2>
+  <script>
+    // Function to check whether a number is positive, negative, or zero
+    function checkNumber(num) {
+      if (num > 0) {
+        return num + " is a Positive number.";
+      } 
+      else if (num < 0) {
+        return num + " is a Negative number.";
+      } 
+      else {
+        return "The number is Zero.";
+      }
+    }
+
+    // Function call
+    let number = parseInt(prompt("Enter a number:"));
+    let result = checkNumber(number);
+    document.write("<h3>" + result + "</h3>");
+  </script>
+</body>
+</html>
