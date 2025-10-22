@@ -82,46 +82,34 @@
       var age = document.getElementById("age").value.trim();
       var course = document.getElementById("course").value.trim();
       var output = document.getElementById("output");
-
-      // Name validation
       if (name === "") {
         alert("Name cannot be empty!");
         return false;
       }
-
-      // Email validation using regex
       var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
       if (!email.match(emailPattern)) {
         alert("Please enter a valid email address!");
         return false;
       }
-
-      // Phone number validation
       var phonePattern = /^[0-9]{10}$/;
       if (!phone.match(phonePattern)) {
         alert("Phone number must be 10 digits!");
         return false;
       }
-
-      // Age validation
       if (isNaN(age) || age < 17 || age > 60) {
         alert("Age must be between 17 and 60!");
         return false;
       }
-
-      // Course validation
       if (course === "") {
         alert("Please enter your desired course!");
         return false;
       }
-
-      // Display colorful output message
       output.style.display = "block";
       output.innerHTML = "🎉 Registration Successful!<br>Welcome, " + name + "!<br>Course: " + course;
       output.style.backgroundColor = "#b8e994";
       output.style.color = "#1e3799";
 
-      return false; // Prevent form submission for demo purpose
+      return false;
     }
   </script>
 </head>
@@ -150,3 +138,4 @@
   <div id="output"></div>
 </body>
 </html>
+
