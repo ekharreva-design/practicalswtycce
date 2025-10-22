@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admission Registration Form</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      text-align: center;
+      margin-top: 50px;
+      color: #333;
+    }
+
+    h2 {
+      color: #0a3d62;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    form {
+      display: inline-block;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+      text-align: left;
+      width: 350px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 15px 0;
+      border: 2px solid #74b9ff;
+      border-radius: 10px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus {
+      border-color: #0984e3;
+      box-shadow: 0 0 10px #81ecec;
+    }
+
+    input[type="submit"] {
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #00cec9;
+      transform: scale(1.05);
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #2d3436;
+      font-weight: bold;
+      background-color: #dff9fb;
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var age = document.getElementById("age").value.trim();
+      var course = document.getElementById("course").value.trim();
+      var output = document.getElementById("output");
+
+      // Name validation
+      if (name === "") {
+        alert("Name cannot be empty!");
+        return false;
+      }
+
+      // Email validation using regex
+      var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address!");
+        return false;
+      }
+
+      // Phone number validation
+      var phonePattern = /^[0-9]{10}$/;
+      if (!phone.match(phonePattern)) {
+        alert("Phone number must be 10 digits!");
+        return false;
+      }
+
+      // Age validation
+      if (isNaN(age) || age < 17 || age > 60) {
+        alert("Age must be between 17 and 60!");
+        return false;
+      }
+
+      // Course validation
+      if (course === "") {
+        alert("Please enter your desired course!");
+        return false;
+      }
+
+      // Display colorful output message
+      output.style.display = "block";
+      output.innerHTML = "🎉 Registration Successful!<br>Welcome, " + name + "!<br>Course: " + course;
+      output.style.backgroundColor = "#b8e994";
+      output.style.color = "#1e3799";
+
+      return false; // Prevent form submission for demo purpose
+    }
+  </script>
+</head>
+
+<body>
+  <h2>Admission Registration Page</h2>
+  <form onsubmit="return validateForm()">
+    <label>Name:</label>
+    <input type="text" id="name" placeholder="Enter your name"><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="example@gmail.com"><br>
+
+    <label>Phone:</label>
+    <input type="text" id="phone" placeholder="10-digit number"><br>
+
+    <label>Age:</label>
+    <input type="text" id="age" placeholder="Enter your age"><br>
+
+    <label>Course:</label>
+    <input type="text" id="course" placeholder="e.g. BCA, BBA, BSc"><br>
+
+    <input type="submit" value="Register">
+  </form>
+
+  <div id="output"></div>
+</body>
+</html>
